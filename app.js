@@ -11,9 +11,7 @@ GAME RULES:
 
 var scores, roundScore, activePlayer;
 
-scores = [0, 0];
-roundScore = 0;
-activePlayer = 0;
+init();
 
 
 // console.log(dice);
@@ -22,13 +20,6 @@ activePlayer = 0;
 
 // var x = document.querySelector('#score-0').textContent;
 // console.log(x);
-
-document.querySelector('.dice').style.display = 'none';
-
-document.getElementById('score-0').textContent = 0;
-document.getElementById('score-1').textContent = 0;
-document.getElementById('current-0').textContent = 0;
-document.getElementById('current-1').textContent = 0;
 
 document.querySelector('.btn-roll').addEventListener('click', function() {
     //Random Number
@@ -51,6 +42,8 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     }
 })
 
+
+
 document.querySelector('.btn-hold').addEventListener('click', function() {
     //Add current score to Global score
     scores[activePlayer] += roundScore;
@@ -68,10 +61,9 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         //Next player
         nextPlayer();
     }
+});
 
 
-
-})
 
 function nextPlayer() {
     activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
@@ -84,4 +76,30 @@ function nextPlayer() {
     document.querySelector('.player-1-panel').classList.toggle('active');
 
     document.querySelector('.dice').style.display = 'none';
+}
+
+document.querySelector('btn-new').addEventListener('click', init);
+
+
+function init() {
+    scores = [0, 0];
+    roundScore = 0;
+    activePlayer = 0;
+
+    document.querySelector('.dice').style.display = 'none';
+
+    document.getElementById('score-0').textContent = 0;
+    document.getElementById('score-1').textContent = 0;
+    document.getElementById('current-0').textContent = 0;
+    document.getElementById('current-1').textContent = 0;
+
+    document.getElementById('name-0').textContent = 'Player 1';
+    document.getElementById('name-1').textContent = 'Player 2';
+
+    document.querySelector('player-0-panel').classList.remove = 'winner';
+    document.querySelector('player-1-panel').classList.remove = 'winner';
+    document.querySelector('player-0-panel').classList.remove = 'active';
+    document.querySelector('player-1-panel').classList.remove = 'active';
+
+    document.querySelector('player-0-panel').classList.add = 'active';
 }
